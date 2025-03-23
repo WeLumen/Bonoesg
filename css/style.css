@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #113724; /* Verde escuro */
+    --button-bg: #1e6f50; /* Verde médio - botão padrão */
+    --button-hover: #2a9d68; /* Verde mais claro - hover */
+    --border-color: #f2fbf05b; /* Marrom suave */
+    --surface-color: #a4aaa5f1; /* Fundo sólido dos botões */
+    --stroke-color: #b8b4b4; /* Contorno branco para destacar */
+    --surface-color-hover: #a3d99e00; /* Efeito no hover */
+    --switch-bg-url: url("/img/status.svg");
+}
+
+.light {
+    --text-color: #000000;
+    --bg-color: #ebebc8; /* Bege claro */
+    --button-bg: #8DAD7B; /* Verde oliva claro */
+    --button-hover: #A3D99E; /* Verde claro */
+    --border-color: hsla(150, 53%, 14%, 0.478); /* Marrom */
+    --surface-color: #d2d4c9;
+    --stroke-color: rgba(0, 0, 0, 0.3);
+    --surface-color-hover: rgba(0, 0, 0, 0);
+    --switch-bg-url: url("/img/sun.svg");
+}
+
+
+body {
+    color: var(--text-color);
+    background-attachment: fixed;
+    background-size: cover;
+    transition: background 0.5s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
+}
+
+body * {
+    font-family: 'Raleway', sans-serif;
+    color: var(--text-color);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#container {
+    width: 100%;
+    max-width: 588px;
+    margin: 56px auto 0px;
+    padding: 0 24px;
+}
+
+#profile {
+    text-align: center;
+    padding: 24px;
+}
+
+#profile img {
+    display: block;
+    width: 112px;
+    border: 5px solid var(--border-color);
+    border-radius: 100px;
+    margin: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+#profile img:hover {
+    transform: scale(1.1);
+}
+
+#profile p {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+#switch {
+    position: relative;
+    width: 64px;
+    margin: 20px auto;
+}
+
+#switch button {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: var(--switch-bg-url) no-repeat center;
+    background-size: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+    animation: slide-back 0.2s;
+    transition: transform 0.2s ease-in-out;
+}
+
+.light #switch button {
+    animation: slide-in 0.2s forwards;
+}
+
+#switch button:active {
+    transform: scale(0.9);
+}
+
+#switch button:hover {
+    outline: 8px solid var(--stroke-color);
+}
+
+#switch span {
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+}
+
+@keyframes slide-in {
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes slide-back {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+/* Lista de links */
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Efeito de surgimento dos botões */
+ul li {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease-in-out forwards;
+}
+
+/* Aplica animação com delay para cada botão */
+ul li:nth-child(1) { animation-delay: 0.2s; }
+ul li:nth-child(2) { animation-delay: 0.4s; }
+ul li:nth-child(3) { animation-delay: 0.6s; }
+ul li:nth-child(4) { animation-delay: 0.8s; }
+ul li:nth-child(5) { animation-delay: 1s; }
+
+/* Keyframe para efeito de surgimento */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animação ao passar o mouse nos links */
+ul li a:hover {
+    background: var(--surface-color-hover);
+    border: 1.5px solid white;
+    transform: scale(1.05);
+    font-weight: bold; /* Deixa o texto em negrito */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Sombreamento para aumentar a legibilidade */
+    color: #ffffff; /* Garantir que o texto fique mais visível em hover */
+}
+@media (max-width: 480px) {
+    /* Imagens específicas para telas menores */
+    body {
+        background-image: url("/img/dia1.png"); /* Imagem diurna para celular */
+    }
+
+    body.dark {
+        background-image: url("/img/dark5.png"); /* Imagem noturna para celular */
+    }
+}
+
+@media (min-width: 481px) {
+    /* Imagens específicas para telas maiores */
+    body {
+        background-image: url("/img/desktop5.jpg"); /* Imagem diurna para desktop */
+    }
+
+    body.dark {
+        background-image: url("/img/dark4.png"); /* Imagem noturna para desktop */
+    }
+}
